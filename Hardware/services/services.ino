@@ -1,3 +1,5 @@
+/*services*/
+
 const int PORT = 9600;
 boolean start = false;
 int inst = 1;
@@ -7,9 +9,6 @@ boolean pinActive [14];
 boolean pinActiveCompare [14];
 //*diferents color by institution*//
 
-//GA-gabinetes
-//0-Servios (SER)
-//3- Salas de Aula
 
 void setup () {
   Serial.begin (PORT);
@@ -60,12 +59,11 @@ void loop () {
   for (int i=0; i<sizeof(pinActive);i++)  {
     if (pinActive[i]!=pinActiveCompare[i]) {
       pinActive[i]=pinActiveCompare[i];
-      digitalWrite (i, pinActive[i]);
+      digitalWrite (i+2, pinActive[i]);
     }
   }
   delay(3000);
   Serial.println(type);
-  
 }
 
 
