@@ -1,0 +1,447 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.1.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Aug 06, 2016 at 07:22 AM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `darq_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `office_times`
+--
+
+CREATE TABLE `office_times` (
+  `id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `day` int(11) NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `office_times`
+--
+
+INSERT INTO `office_times` (`id`, `teacher_id`, `day`, `start_time`, `end_time`) VALUES
+(1, 3, 5, '18:00:00', '19:00:00'),
+(2, 3, 5, '18:00:00', '19:00:00'),
+(3, 2, 2, '16:00:00', '18:00:00'),
+(4, 4, 4, '14:00:00', '19:00:00'),
+(5, 5, 6, '15:00:00', '17:00:00'),
+(6, 6, 3, '14:30:00', '17:30:00'),
+(9, 7, 3, '10:00:00', '13:00:00'),
+(10, 8, 5, '09:00:00', '11:00:00'),
+(11, 9, 4, '14:30:00', '18:00:00'),
+(12, 10, 3, '09:00:00', '10:00:00'),
+(13, 11, 2, '16:00:00', '18:00:00'),
+(14, 11, 5, '17:00:00', '18:00:00'),
+(15, 12, 4, '15:00:00', '18:00:00'),
+(16, 13, 6, '01:00:00', '23:50:00'),
+(17, 14, 6, '02:00:00', '23:50:00'),
+(18, 15, 6, '02:10:00', '22:50:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `Id` int(11) NOT NULL,
+  `inst_id` int(11) DEFAULT NULL,
+  `Short_name` varchar(120) NOT NULL,
+  `Opening_hours` time NOT NULL,
+  `Lunch_start_time` time DEFAULT NULL,
+  `Lunch_ending_time` time DEFAULT NULL,
+  `Close_hours` time NOT NULL,
+  `Institution` int(11) NOT NULL,
+  `Operating_days` int(11) NOT NULL,
+  `Long_Name` varchar(255) NOT NULL,
+  `Contact` varchar(255) DEFAULT NULL,
+  `Website` varchar(255) DEFAULT NULL,
+  `Obs` text
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`Id`, `inst_id`, `Short_name`, `Opening_hours`, `Lunch_start_time`, `Lunch_ending_time`, `Close_hours`, `Institution`, `Operating_days`, `Long_Name`, `Contact`, `Website`, `Obs`) VALUES
+(1, 3, 'Reprografia', '09:00:00', '13:00:00', '14:00:00', '18:00:00', 1, 0, 'Nozzle, Lda', 'm:nozzle@sapo.pt;', 'f:NozzleLda;', NULL),
+(2, 2, 'Bar', '08:00:00', NULL, NULL, '19:00:00', 1, 0, 'Bar de Arquitectura', 't:931671842;', 'f:bardara;', ''),
+(3, 5, 'Bar: Venda Automática', '00:00:00', NULL, NULL, '00:00:00', 1, 1, 'Maquina de Venda Automática do Bar de Arquitectura', 't:931671842;', 'f:bardarq;', NULL),
+(4, 3, 'Sala de Estudo', '09:00:00', NULL, NULL, '18:00:00', 1, 0, 'Sala de Estudo do DArq FCTUC/UC', NULL, NULL, NULL),
+(5, 5, 'Marquise', '00:00:00', NULL, NULL, '00:00:00', 1, 0, '', NULL, NULL, 'Sala de Estudo e espaço exibitivo multiusos do departamento de Arquitectura'),
+(6, 6, 'NUDA', '09:00:00', NULL, NULL, '18:00:00', 1, 0, 'Núcleo de Estudantes em Arquitectura', 'm:nudaac@gmail.com;', 'f:nudaac;', 'Associação de Estudantes'),
+(7, 7, 'NU', '18:00:00', NULL, NULL, '20:00:00', 1, 5, 'Revista NU', 'w:arquivonu.blogspot.pt;f:nurevista', 'm:revista.nu@gmail.com', 'Unidade Organica especial do Núcleo de Estudantes em Arquitectura'),
+(8, 8, 'GGInfor', '09:00:00', NULL, NULL, '18:00:00', 1, 0, 'Gabinete de Gestão Informatica do Departamento de Arquitectura da Faculdade de Ciências e Tecnologia da Universidade de Coimbra', NULL, NULL, NULL),
+(9, 9, 'Secretária', '11:00:00', '12:30:00', '14:00:00', '16:00:00', 1, 0, 'Secretária do DArq—FCTUC', 'm:secretaria_darq@uc.pt;t:239851350;f:239829220;', 'w:www.uc.pt/fctuc/darq/departamento/secretaria;', 'Horário de funcionamento real: 9:00 - 12:30 | 14:00 - 17:30;\r\nApresentado o horario de Atendimento'),
+(10, 10, 'Biblioteca', '09:00:00', '13:00:00', '14:00:00', '17:00:00', 1, 0, 'Biblioteca do Colégio das Artes', 'm:gsimoes@uc.pt;t:239851352;f:239829220;', 'w:www.uc.pt/fctuc/darq/departamento/biblioteca;', NULL),
+(11, 1, 'SAG', '10:00:00', '12:00:00', '14:30:00', '16:00:00', 2, 0, 'Serviços de Apoio à Gestão do Colégio das Artes', 't:239857019;m:colegiodasartes@colegiodasartes.uc.pt;\r\n', 'w:www.uc.pt/colegioartes;', 'Semelhante a secretária de um departamento da FCTUC;\r\nHorário de funcionamento - 9:00 - 13:00 | 14:00 - 18:00\r\nHorário de atendimento - 10:00 - 12:00 | 14:30 - 16:00'),
+(12, 1, 'SGESA', '09:00:00', '13:00:00', '14:00:00', '18:00:00', 3, 0, 'Serviço de Gestão do Edificado, Segurança e Ambiente', 't:239855120;m:gesa@uc.pt;', 'w:www.uc.pt/sgesa;', ''),
+(13, 11, 'Direcção', '00:00:00', '00:00:00', NULL, '00:00:00', 1, 0, 'Direcção do Departamento de Arquitectura da Faculdade de Ciências e Tecnologia da Universidade de Coimbra', NULL, 'w:www.uc.pt/fctuc/darq;', NULL),
+(17, 3, 'Direcção', '00:00:00', NULL, NULL, '00:00:00', 2, 0, 'Direcção do Colégio das Artes da Universidade de Coimbra', NULL, 'w:www.uc.pt/colegioartes;', NULL),
+(19, 4, 'Quarto 22', '10:00:00', '12:00:00', '13:00:00', '18:00:00', 2, 0, 'Espaço de exposições «Quarto 22»', NULL, 'w:www.uc.pt/colegioartes/exposicoes_1;', NULL),
+(20, 5, 'Galeria Colégio das Artes', '10:00:00', '12:00:00', '13:00:00', '18:00:00', 2, 0, 'Espaço de exposições do Colégio das Artes', NULL, 'w:www.uc.pt/colegioartes/exposicoes_1;', NULL),
+(21, 5, 'Galeria DARQ', '08:00:00', NULL, NULL, '18:00:00', 1, 0, 'Sala de Exposições do Departamento de Arquitectura', NULL, NULL, NULL),
+(22, 5, 'Exposição Temporária', '09:00:00', NULL, NULL, '18:00:00', 1, 0, 'Corredor de Exposição Temporaria do DArq', NULL, NULL, NULL),
+(26, 5, 'Há Baixa', '00:00:00', NULL, NULL, '00:00:00', 1, 0, 'Colectivo Há Baixa', NULL, 'w:habaixa.pt', NULL),
+(27, 0, 'Laboratório de Curadoria', '09:00:00', NULL, NULL, '18:00:00', 6, 0, 'Laboratório de Curadoria do Mestrado em Estudos Curadoriais do Colégio das Artes', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services_spaces`
+--
+
+CREATE TABLE `services_spaces` (
+  `Space_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `services_spaces`
+--
+
+INSERT INTO `services_spaces` (`Space_id`, `service_id`) VALUES
+(110, 11),
+(111, 17),
+(112, 20),
+(112, 27),
+(113, 19),
+(113, 20),
+(114, 20),
+(115, 20),
+(116, 20),
+(117, 20),
+(118, 20),
+(209, 9),
+(211, 10),
+(212, 10),
+(213, 10),
+(219, 21),
+(222, 8),
+(224, 1),
+(225, 1),
+(227, 4),
+(229, 2),
+(231, 2),
+(234, 6),
+(234, 7),
+(239, 13),
+(255, 26),
+(270, 12),
+(2011, 5),
+(2053, 22),
+(2214, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spaces`
+--
+
+CREATE TABLE `spaces` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Type` int(11) NOT NULL DEFAULT '6',
+  `floor` int(11) NOT NULL DEFAULT '1',
+  `Obs` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `spaces`
+--
+
+INSERT INTO `spaces` (`Id`, `Name`, `Type`, `floor`, `Obs`) VALUES
+(1, 'Lavabos Femininos', 8, 0, NULL),
+(2, 'Lavabos Masculinos', 8, 0, NULL),
+(31, 'Entrada no piso -1, colégio das Artes;', 5, 0, 'Departamento de bioquímica'),
+(32, 'Acesso aos Elevadores piso -1;', 5, 0, 'Acesso aos Elevadores piso -1; Precede do 31;'),
+(100, 'Entrada Colegio das Artes', 5, 1, NULL),
+(101, 'Entrada para o segundo piso Colégio das Artes', 5, 1, 'Acesso pela 100;'),
+(102, 'Colégio das Artes (CA3)', 2, 1, NULL),
+(103, 'Projecto 0', 1, 1, NULL),
+(104, 'Projecto 3', 1, 1, 'Acesso pela 105;'),
+(105, 'Acesso a Projecto 4;', 1, 1, NULL),
+(106, 'Futuro Gabinete CA/DM', 1, 1, NULL),
+(110, 'SAG Colégio das Artes', 3, 1, NULL),
+(111, 'Direcção/Gabinetes/Comissão Cientifica Coligido das Artes', 3, 1, NULL),
+(112, 'Laboratorio de Curadoria', 3, 1, 'Acesso a 118'),
+(113, 'Exposição - Sala 1', 3, 1, NULL),
+(114, 'Exposição - Sala 2', 3, 1, NULL),
+(115, 'Exposição - Sala 3', 3, 1, NULL),
+(116, 'Exposição - Sala 4', 3, 1, NULL),
+(117, 'Exposição - Sala 5', 3, 1, NULL),
+(118, 'Exposição - Sala 6', 3, 1, NULL),
+(119, 'Acesso aos Lavabos do colégio das artes', 5, 1, NULL),
+(120, 'Lavabos Femininos', 8, 1, NULL),
+(121, 'Lavabos Masculinos', 8, 1, NULL),
+(122, 'Claustro cobertos, corredor', 5, 1, NULL),
+(123, 'Claustro Colégio', 5, 1, NULL),
+(124, 'Gabinete Doutorados', 1, 1, 'Acesso pela 103;'),
+(200, 'Escadas de Acesso ao Piso1;', 5, 2, 'Acesso pela 101;'),
+(201, 'Corredor do Claustro', 5, 2, ''),
+(202, 'Teórica 2', 2, 2, 'Acesso pela 2021;'),
+(203, 'Projecto 5', 1, 2, ''),
+(204, 'Acesso ao corredor de serviços;', 5, 2, ''),
+(206, 'Sacristia nº2; Gestão da Segurança', 4, 2, 'usado como Arrumo também;'),
+(207, 'Capela', 6, 2, 'Usos Variados, considerada como serviço, por causa das exposições'),
+(208, 'Sacristia nº1', 4, 2, 'Usada como Arrumo;'),
+(209, 'Secretária', 3, 2, ''),
+(210, 'Sala de Convivio dos Funcionarios', 3, 2, ''),
+(211, 'Biblioteca; Arquivo;', 3, 2, 'Arquivo de Livros'),
+(212, 'Biblioteca; Sala de Estudo;', 3, 2, 'Sala de Estudo da Biblioteca'),
+(213, 'Biblioteca; ', 3, 2, 'Entrada na biblioteca; Sala das publicações;'),
+(214, 'Gabinete 76.1', 7, 2, 'Acesso pela 2053;'),
+(215, 'Gabinete 76.2', 7, 2, 'Acesso pela 214;'),
+(216, 'Gabinete 77', 7, 2, 'Acesso pela 215;'),
+(217, 'Lavabos Mistos', 8, 2, 'optimizado para pessoas com dificuldades em mobilidade;'),
+(218, 'Lavatorios dos lavabos para pessoas com dificuldades em mobilidade;', 8, 2, NULL),
+(219, 'Sala de Exposições DARQ', 3, 2, 'Acesso pela 2054 e 204;'),
+(220, 'Teórica 3', 2, 2, 'Acesso pela 219;'),
+(222, 'Gabinete informático', 3, 2, 'Acesso pelo 2221;'),
+(223, 'Gabinete 72;', 7, 2, 'Entrada alternativa pela 201; Acesso pelo 2221;'),
+(224, 'Reprografia: Sala de Corte Lazer;', 3, 2, 'pertencem ao 225; Acesso pela 2222;'),
+(225, 'Reprografia', 3, 2, 'Acesso pelo 2222;'),
+(226, 'Lavabos Masculinos', 8, 2, 'Acesso pela 2222;'),
+(227, 'Sala de Estudo', 3, 2, 'Acesso pela 2212;'),
+(228, 'Lavabos Femininos', 8, 2, 'Acesso pelo 2213; '),
+(229, 'Cozinha do Bar', 3, 2, 'pertencente ao 231; Acesso alternativo pelo 201; Acesso pelo 2213;'),
+(230, 'Sala de Convivido dos Professores', 3, 2, 'Acesso pelo 2213; Acesso alternativo pelo 201;'),
+(231, 'Bar', 3, 2, 'Acesso pelo 2213;'),
+(232, 'Projecto 1: Farol', 1, 2, 'Primeira sala de projecto 1, complementa com a Aquário'),
+(234, 'Sala do Núcleo de Estudantes', 3, 2, 'Sala em utilização pelo Núcleo e pela edição da NUDA'),
+(235, 'Projecto 1: Aquário', 1, 2, 'Complementar a disciplina de projecto 1 com  a sala 232'),
+(236, 'Projecto 4', 1, 2, NULL),
+(237, 'Teorica 0', 2, 2, NULL),
+(238, 'Corredor dos gabinetes e da direcção', 5, 2, NULL),
+(239, 'Sala da Direcção', 3, 2, 'Acesso pelo corredor 2383'),
+(240, 'Sala da Comissão Cientifica', 3, 2, NULL),
+(241, 'Gabinete 71', 7, 2, NULL),
+(242, 'Gabinete 81', 7, 2, NULL),
+(243, 'Gabinete 80', 7, 2, NULL),
+(244, 'Arrumo', 4, 2, 'Entrada pelo corredor 238'),
+(245, 'Arrumo', 4, 2, 'Entrada pelo corredor 238'),
+(246, 'Arrumo', 4, 2, 'Entrada pelo corredor 238'),
+(247, 'Sala Prova Final', 2, 2, NULL),
+(248, 'Projecto 2', 1, 2, NULL),
+(249, 'Corredor de acesso ao lavabos e aos cacifos nº1', 5, 2, 'Acesso complementar a sala 248'),
+(250, 'Arrumo', 4, 2, 'Entrada pelo corredor 249'),
+(251, 'Lavabos Femininos', 8, 2, 'Acesso pelo corredor 249'),
+(252, 'Lavabos Masculinos', 8, 2, 'Acesso pelo corredor 249'),
+(253, 'CeArq e acesso a gabinete 61', 6, 2, NULL),
+(254, 'CeArq: Sala nº1', 1, 2, 'Entrada pela 253;'),
+(255, 'CeArq: Sala nº2', 1, 2, 'Projecto Há Baixa;\r\nEntrada pela 253;'),
+(256, 'Doutoramento 1', 2, 2, NULL),
+(257, 'Acesso a Sala Teórica 1 e gabinete 74', 5, 2, NULL),
+(258, 'Arrumo nº1 Teorica 1;', 4, 2, 'Acesso pela 257;'),
+(259, 'Arrumo nº2 Teorica 1;', 4, 2, 'Acesso pela 257;'),
+(260, 'Gabinete nº74;', 7, 2, 'Acesso pela 257;\r\n'),
+(261, 'Teorica 1', 2, 2, 'Acesso pela 257;'),
+(262, 'Teorica 4', 2, 2, ''),
+(263, 'Arrumo', 4, 2, 'Acesso alternativo pelo 2634;'),
+(264, 'Doutoramento 2;', 2, 2, 'Acesso ao corredor 2633;'),
+(270, 'Salas ocupadas pelo DGESA', 3, 2, 'parte dos serviços da UC; Inclui salas no Sótão e parte no primeiro piso:;'),
+(1201, 'Plataforma intermedia de acesso;', 5, 2, 'Acesso pela 101;'),
+(1209, 'Secretária—Sotão;', 4, 3, 'Acesso pela 209;'),
+(1253, 'Gabinete nº61', 7, 3, 'Acesso pelo espaço 253;'),
+(1254, 'Arrumos', 4, 3, 'Sótão; Acesso pelo Arrumo 2471;'),
+(1263, 'Arrumo nº1 Sotão T1/D1;', 4, 3, 'Acesso pela 1264;'),
+(1264, 'plataforma de acesso ao Sótão pela 264;', 5, 3, 'Acesso pela 2643;'),
+(1265, 'Arrumo nº3 Sotão T1/D1;', 4, 3, 'Acesso pela 12641;'),
+(2001, 'Arrumo Escadas de Entrada;', 4, 2, 'Acesso pelas 200;'),
+(2011, 'Marquise', 6, 2, 'Parte do 201;'),
+(2021, 'Acesso a Sala Teórica 2', 5, 2, ''),
+(2022, 'Acesso ao Sotão na 2021;', 5, 2, 'Acesso pela 2021;'),
+(2041, 'Acesso as Sacristias e a Capela;', 5, 2, ''),
+(2051, 'Corredor giratorio de contorno da capela, parte1;', 5, 2, 'Continua no 2052;'),
+(2052, 'Corredor giratorio de contorno da capela, parte2;', 5, 2, ''),
+(2053, 'Corredor giratorio de contorno da capela, parte1;', 5, 2, 'É usado como espaço exibitivo também'),
+(2054, 'Acesso aos Lavabos para deficiente; ', 5, 2, 'Local de passagem no corredor geral dos serviços'),
+(2151, 'Arrumo Gabinete 76', 4, 2, 'Acesso pela sala 215;'),
+(2211, 'Corredor dos Serviços — parte 1', 5, 2, 'acesso a 223 e a 222;'),
+(2212, 'Corredor de serviços—parte 2', 5, 2, 'Acesso a reprografia e sala de estudo;'),
+(2213, 'Corredor de Serviços — parte 3', 5, 2, 'Acesso ao Bar, precede do 2212;'),
+(2214, 'Corredor dos Serviços-parte4; Elevadores;', 5, 2, 'Entrada e Saída do edificio pelos elevadores; Acesso ao 201 e ao 2213;'),
+(2361, 'Gabinete 86', 7, 2, 'Entrada pela Projecto 4'),
+(2362, 'Arrumo nº 2 do Gabinete 86', 4, 2, 'Entrada pelo Gabinete 86'),
+(2363, 'Arrumo nº 1 do Gabinete 86', 4, 2, NULL),
+(2364, 'Arrumo nº1 sala Projecto 4', 4, 2, 'Entrada pela Projecto 4'),
+(2365, 'Arrumo nº2 sala Projecto 4', 4, 2, 'Entrada pela Projecto 4'),
+(2371, 'Gabinete 84', 7, 2, NULL),
+(2372, 'Oficina de Design e Multimédia', 1, 2, 'Entrada pela teorica 0'),
+(2373, 'Oficina da T0', 6, 2, 'Entrada pela teorica 0'),
+(2381, 'Arrumo', 4, 2, 'Entrada pelo corredor 238'),
+(2382, 'Arrumo e acesso ao sótão', 4, 2, 'Entrada pelo corredor 238'),
+(2383, 'Acesso a Sala da Direcção ', 5, 2, 'Acesso complementar a sala 247'),
+(2471, 'Arrumo Sala Prova Final', 4, 2, 'Acesso ao Sotão, entrada pela sala 247'),
+(2561, 'Acesso ao Sotão Doutoramento 1;', 5, 2, 'Acesso ao Sotão; Acesso pela 256;'),
+(2562, 'Arrumo', 4, 3, 'Acesso pela 12561;'),
+(2563, 'Arrumo', 4, 3, 'Acesso pela 12561;'),
+(2564, 'Arrumo', 4, 3, 'Acesso pela 12561;'),
+(2601, 'Arrumo gabinete nº74', 4, 2, 'Acesso pela 260;'),
+(2631, 'Arrumo nº1 Doutoramento 1 e Teorica 4;', 4, 2, NULL),
+(2632, 'Arrumo nº2 Doutoramento 1 e Teorica 4;', 4, 2, NULL),
+(2634, 'Corredor de Acesso aos Arrumos da Teorica 4 e Doutoramento 2', 5, 2, 'Ligação alternativa a doutoramento 2; Acesso ao sótão;'),
+(2701, 'Acesso Gabinete nº75;', 5, 2, 'Acesso pela 2213;'),
+(3211, 'Gabinete nº75—Entrada no Gabinete;', 7, 3, 'Acesso pela 32111;'),
+(3212, 'Gabinete nº75—Sala 1', 7, 3, 'Acesso pela 3211;'),
+(3213, 'Gabinete nº75—Sala 2', 7, 3, 'Acesso pela 3211;'),
+(3214, 'Gabinete nº75—Sala 3', 7, 3, 'Acesso pela 3211;'),
+(12561, 'Corredor de acesso aos arrumos 256;', 5, 3, 'Acesso pela 2561;'),
+(12641, 'Arrumo nº2 Sotão T1/D1;', 4, 3, 'Acesso pela 1264;'),
+(32111, 'Acesso aos Gabinete nº75;', 5, 2, 'Professor Rui lobo; Acesso pela 2213;');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `space_type`
+--
+
+CREATE TABLE `space_type` (
+  `Id` int(5) NOT NULL,
+  `Name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `space_type`
+--
+
+INSERT INTO `space_type` (`Id`, `Name`) VALUES
+(1, 'Salas de Aula Práticas'),
+(2, 'Salas de Aula Teorica'),
+(3, 'Serviços'),
+(4, 'Arrumos'),
+(5, 'Espaços de circulação'),
+(6, 'Espaços de Utilização Mista'),
+(7, 'Gabinetes'),
+(8, 'Lavabos');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Teachers`
+--
+
+CREATE TABLE `Teachers` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(245) NOT NULL,
+  `long_name` varchar(245) NOT NULL,
+  `Office` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Teachers`
+--
+
+INSERT INTO `Teachers` (`Id`, `Name`, `long_name`, `Office`) VALUES
+(2, 'Walter Rossa', 'Walter Rossa Ferreira da Silva', 223),
+(3, 'Susana Lobo', 'Susana Luísa Mexia Lobo', 260),
+(4, 'Mauro Costa Couceiro', 'Mauro Costa Couceiro', 2371),
+(5, 'Pedro Pousada', '\r\nPedro Filipe Rodrigues Pousada', 2361),
+(6, 'Margarida Relvão', 'Margarida Isabel Barreto Relvão Calmeiro', 216),
+(7, 'Gonçalo Moniz', 'Gonçalo Esteves de Oliveira do Canto Moniz', 2361),
+(8, 'Daniel Soares', 'Daniel Filipe Silva Soares', 243),
+(9, 'Adelino Gonçalves', 'Adelino Manuel dos Santos Gonçalves', 243),
+(10, 'António Alberto de Faria Bettencourt', 'António Bettencourt', 223),
+(11, 'António Olaio', 'António José Olaio Correia de Carvalho', 1260),
+(12, 'Paulo Providência', 'João Paulo Mendes Seiça da Providência Santarém', 242),
+(13, 'Faz de conta', '', 1),
+(14, 'Faz de COnta2', 'TESTE', 1),
+(15, 'Faz de conta3', 'TESTE', 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `office_times`
+--
+ALTER TABLE `office_times`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Long_Name` (`Long_Name`),
+  ADD KEY `Short_Name` (`Short_name`) USING BTREE;
+
+--
+-- Indexes for table `services_spaces`
+--
+ALTER TABLE `services_spaces`
+  ADD PRIMARY KEY (`service_id`,`Space_id`),
+  ADD KEY `fk_space_id` (`Space_id`);
+
+--
+-- Indexes for table `spaces`
+--
+ALTER TABLE `spaces`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `fk_type_spaces` (`Type`);
+
+--
+-- Indexes for table `space_type`
+--
+ALTER TABLE `space_type`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `Teachers`
+--
+ALTER TABLE `Teachers`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `office_times`
+--
+ALTER TABLE `office_times`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `space_type`
+--
+ALTER TABLE `space_type`
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `Teachers`
+--
+ALTER TABLE `Teachers`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `services_spaces`
+--
+ALTER TABLE `services_spaces`
+  ADD CONSTRAINT `fk_service_id` FOREIGN KEY (`service_id`) REFERENCES `services` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_space_id` FOREIGN KEY (`Space_id`) REFERENCES `spaces` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `spaces`
+--
+ALTER TABLE `spaces`
+  ADD CONSTRAINT `fk_type_spaces` FOREIGN KEY (`Type`) REFERENCES `space_type` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
