@@ -57,12 +57,12 @@ public class Sketch extends PApplet {
     public Office office;
     public ArrayList<Boolean> onOfficeArray = new ArrayList<> ();
     
-    public int interfaceMode = 0;
+    public int interfaceMode = 3;
     //public ArrayList<Office> officesInterface;
     
     //Graphic variables
     public long margin = 0;
-    public PFont font, secundaryFont;
+    public PFont font, secundaryFont, smallFont;
 
     
     @Override
@@ -77,7 +77,8 @@ public class Sketch extends PApplet {
         //Interface inits
         smooth();
         font = createFont("KarbonSlabStencil-Regular", 120);
-        secundaryFont = createFont ("OfficeCodePro-Medium",16);
+        smallFont = createFont ("KarbonSlabStencil-Regular", 60);
+        secundaryFont = createFont ("OfficeCodePro-Medium",14);
         //String[] fontList = PFont.list();
         //printArray(fontList);
     }
@@ -97,21 +98,21 @@ public class Sketch extends PApplet {
         textAlign(LEFT);
         String s = "";
         if (interfaceMode == 1) s = "Office "+officeNumber;
-        else if (interfaceMode == 0) s="services";
+        else if (interfaceMode == 2) s="Services";
         else if (interfaceMode == 3) s="loading";
         int textMargin = width/12;
         text(s,textMargin,Math.round(margin*6));
         s=actualTime;
         text(s,textMargin*3,Math.round(margin*6));
-        textFont (font);
+        //textFont (font);
+        textFont (smallFont);
         s= "";
-
+        float y = Math.round(margin*20);
         switch (interfaceMode){
-            case 0:
+            default:
                 break;
             case 1:
                 if (office !=null){
-                    float y = Math.round(margin*20);
                     for (Teacher t :office.teachers ){
                         s = t.name;
                         boolean inOffice =  t.inOffice();
@@ -120,8 +121,19 @@ public class Sketch extends PApplet {
                         text(s, textMargin, y);
                         y +=Math.round(margin*14);
                     }
-                    
                 }
+            break;
+            case 2:
+                textFont (smallFont);
+                if (services == null) break;
+                for (Service serv:services) {
+                   s=serv.name;
+                   text(s, textMargin, y);
+                   y +=Math.round(margin*7);
+                }
+            break; 
+            case 3:
+                //loading
             break;
         }
     }
@@ -153,10 +165,8 @@ public class Sketch extends PApplet {
                        } 
                        i++;
                     }
-                    
-                    if (reset){
+                    if (reset)
                         myPort.write("RESET");
-                    }
                 } 
                 //Hardwares needs Services information
                 else if (val.contains("SER")) {
@@ -176,6 +186,7 @@ public class Sketch extends PApplet {
                         String[] info = val.split(" ");
                         String inst[] = info[1].split(":"); 
                         institution = Integer.parseInt(inst[1]);
+                        println (institution);
                     } else if (val.contains("OFF")){ //offices plantaform
                         interfaceMode = 1;
                         String[] info = val.split(" ");
@@ -208,8 +219,8 @@ public class Sketch extends PApplet {
     */
     @Override
     public void settings() {
-        fullScreen();
-        //size (1000,700);
+        //fullScreen();
+        size (1000,700);
     }
     
     /*

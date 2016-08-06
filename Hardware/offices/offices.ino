@@ -1,3 +1,8 @@
+/*
+  offices microcontroler
+  1 per office
+*/
+
 //constrants
 const int PORT = 9600;
 const String TYPE = "TOF"; //string of request
@@ -62,13 +67,6 @@ void loop() {
     Serial.println(TYPE);
     delay(1);
   }
-  
-  //
-  //if (millis() % (delayTime*1000) == 0) 
-  //if (start) delay(delayTime*1000);
-  //if (start) Serial.println(TYPE);
-  //buttons 
-  
   
 }
 
